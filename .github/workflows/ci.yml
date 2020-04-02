@@ -1,1 +1,2 @@
-name: lua-state-machine test s
+name: lua-state-machine test suite
+on: [p
