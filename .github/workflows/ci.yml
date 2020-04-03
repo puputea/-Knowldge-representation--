@@ -3,4 +3,5 @@ on: [push]
 jobs:
 
   build:
-   
+    name: test
+  
