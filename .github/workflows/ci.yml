@@ -2,4 +2,5 @@ name: lua-state-machine test suite
 on: [push]
 jobs:
 
- 
+  build:
+   
