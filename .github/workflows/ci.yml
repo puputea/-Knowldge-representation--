@@ -4,4 +4,4 @@ jobs:
 
   build:
     name: test
-    run
+    runs-on: ubunt
