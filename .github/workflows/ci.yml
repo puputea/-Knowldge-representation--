@@ -4,4 +4,6 @@ jobs:
 
   build:
     name: test
-    runs-on: ubuntu-lates
+    runs-on: ubuntu-latest
+    steps:
+ 
