@@ -6,4 +6,5 @@ jobs:
     name: test
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@m
+    - uses: actions/checkout@master
+    
