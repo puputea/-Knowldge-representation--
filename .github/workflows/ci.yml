@@ -7,4 +7,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - run: sudo apt-get -y install luajit luar
+    - run: sudo apt-get -y install luajit luarocks
+    - run: su
