@@ -8,4 +8,4 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - run: sudo apt-get -y install luajit luarocks
-    - run: sudo luaroc
+    - run: sudo luarocks install
