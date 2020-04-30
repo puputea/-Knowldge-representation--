@@ -10,4 +10,4 @@ jobs:
     - run: sudo apt-get -y install luajit luarocks
     - run: sudo luarocks install luafilesystem
     - run: sudo luarocks install busted
-    - r
+    - run: sudo bu
