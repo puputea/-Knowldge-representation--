@@ -28,3 +28,12 @@ local fsm = machine.create({
   initial = 'green',
   events = {
     { name = 'warn',  from = 'green',  to = 'yellow' },
+    { name = 'panic', from = 'yellow', to = 'red'    },
+    { name = 'calm',  from = 'red',    to = 'yellow' },
+    { name = 'clear', from = 'yellow', to = 'green'  }
+}})
+```
+
+... will create an object with a method for each event:
+
+ * fsm:warn()  - transition from 'green' to 'yellow'
