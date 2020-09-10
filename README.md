@@ -22,3 +22,9 @@ Usage
 In its simplest form, create a standalone state machine using:
 
 ```lua
+local machine = require('statemachine')
+
+local fsm = machine.create({
+  initial = 'green',
+  events = {
+    { name = 'warn',  from = 'green',  to = 'yellow' },
