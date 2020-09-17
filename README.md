@@ -48,3 +48,19 @@ along with the following members:
  * fsm:is(s)     - return true if state `s` is the current state
  * fsm:can(e)    - return true if event `e` can be fired in the current state
  * fsm:cannot(e) - return true if event `e` cannot be fired in the current state
+
+Multiple 'from' and 'to' states for a single event
+==================================================
+
+If an event is allowed **from** multiple states, and always transitions to the same
+state, then simply provide an array of states in the `from` attribute of an event. However,
+if an event is allowed from multiple states, but should transition **to** a different
+state depending on the current state, then provide multiple event entries with
+the same name:
+
+```lua
+local machine = require('statemachine')
+
+local fsm = machine.create({
+  initial = 'hungry',
+  events = {
