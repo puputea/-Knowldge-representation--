@@ -64,3 +64,11 @@ local machine = require('statemachine')
 local fsm = machine.create({
   initial = 'hungry',
   events = {
+    { name = 'eat',  from = 'hungry',                                to = 'satisfied' },
+    { name = 'eat',  from = 'satisfied',                             to = 'full'      },
+    { name = 'eat',  from = 'full',                                  to = 'sick'      },
+    { name = 'rest', from = {'hungry', 'satisfied', 'full', 'sick'}, to = 'hungry'    },
+}})
+```
+
+This example will create an object with 2 event methods:
