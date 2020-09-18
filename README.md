@@ -72,3 +72,12 @@ local fsm = machine.create({
 ```
 
 This example will create an object with 2 event methods:
+
+ * fsm:eat()
+ * fsm:rest()
+
+The `rest` event will always transition to the `hungry` state, while the `eat` event
+will transition to a state that is dependent on the current state.
+
+>> NOTE: The `rest` event could use a wildcard '*' for the 'from' state if it should be
+allowed from any current state.
