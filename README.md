@@ -93,3 +93,22 @@ Callbacks
  * onbefore**event** - fired before the event
  * onleave**state**  - fired when leaving the old state
  * onenter**state**  - fired when entering the new state
+ * onafter**event**  - fired after the event
+
+You can affect the event in 3 ways:
+
+ * return `false` from an `onbeforeevent` handler to cancel the event.
+ * return `false` from an `onleavestate` handler to cancel the event.
+ * return `ASYNC` from an `onleavestate` or `onenterstate` handler to perform an asynchronous state transition (see next section)
+
+For convenience, the 2 most useful callbacks can be shortened:
+
+ * on**event** - convenience shorthand for onafter**event**
+ * on**state** - convenience shorthand for onenter**state**
+
+In addition, a generic `onstatechange()` callback can be used to call a single function for _all_ state changes:
+
+All callbacks will be passed the same arguments:
+
+ * **self**
+ * **event** name
