@@ -112,3 +112,11 @@ All callbacks will be passed the same arguments:
 
  * **self**
  * **event** name
+ * **from** state
+ * **to** state
+ * _(followed by any arguments you passed into the original event method)_
+
+Callbacks can be specified when the state machine is first created:
+
+```lua
+local machine = require('statemachine')
