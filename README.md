@@ -133,3 +133,11 @@ local fsm = machine.create({
     onpanic =  function(self, event, from, to, msg) print('panic! ' .. msg)    end,
     onclear =  function(self, event, from, to, msg) print('thanks to ' .. msg) end,
     ongreen =  function(self, event, from, to)      print('green light')       end,
+    onyellow = function(self, event, from, to)      print('yellow light')      end,
+    onred =    function(self, event, from, to)      print('red light')         end,
+  }
+})
+
+fsm:warn()
+fsm:panic('killer bees')
+fsm:calm()
