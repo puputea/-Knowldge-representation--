@@ -166,3 +166,16 @@ Sometimes, you need to execute some asynchronous code during a state transition 
 new state is not entered until your code has completed.
 
 A good example of this is when you transition out of a `menu` state, perhaps you want to gradually
+fade the menu away, or slide it off the screen and don't want to transition to your `game` state
+until after that animation has been performed.
+
+You can now return `ASYNC` from your `onleavestate` and/or `onenterstate` handlers and the state machine
+will be _'put on hold'_ until you are ready to trigger the transition using the new `transition(eventName)`
+method.
+
+If another event is triggered during a state machine transition, the event will be triggered relative to the
+state the machine was transitioning to or from. Any calls to `transition` with the cancelled async event name
+will be invalidated.
+
+During a state change, `asyncState` will transition from `NONE` to `[event]WaitingOnLeave` to `[event]WaitingOnEnter`,
+looping back to `NONE`. If the state machine is put on hold, `asyncState` will pause depending on which handler
