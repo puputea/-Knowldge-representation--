@@ -141,3 +141,12 @@ local fsm = machine.create({
 fsm:warn()
 fsm:panic('killer bees')
 fsm:calm()
+fsm:clear('sedatives in the honey pots')
+...
+```
+
+Additionally, they can be added and removed from the state machine at any time:
+
+```lua
+fsm.ongreen       = nil
+fsm.onyellow      = nil
