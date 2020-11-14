@@ -207,3 +207,17 @@ local fsm = machine.create({
       end)
       return fsm.ASYNC -- tell machine to defer next state until we call transition (in fadeOut callback above)
     end,
+
+    onleavegame = function(fsm, name, from, to)
+      manager.slide('slow', function()
+        fsm:transition(name)
+      end)
+      return fsm.ASYNC -- tell machine to defer next state until we call transition (in slideDown callback above)
+    end,
+  }
+})
+```
+
+If you decide to cancel the async event, you can call `fsm.cancelTransition(eventName)`
+
+Initialization Options
