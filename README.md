@@ -221,3 +221,13 @@ local fsm = machine.create({
 If you decide to cancel the async event, you can call `fsm.cancelTransition(eventName)`
 
 Initialization Options
+======================
+
+How the state machine should initialize can depend on your application requirements, so
+the library provides a number of simple options.
+
+By default, if you dont specify any initial state, the state machine will be in the `'none'`
+state and you would need to provide an event to take it out of this state:
+
+```lua
+local machine = require('statemachine')
