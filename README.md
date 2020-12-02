@@ -231,3 +231,10 @@ state and you would need to provide an event to take it out of this state:
 
 ```lua
 local machine = require('statemachine')
+
+local fsm = machine.create({
+  events = {
+    { name = 'startup', from = 'none',  to = 'green' },
+    { name = 'panic',   from = 'green', to = 'red'   },
+    { name = 'calm',    from = 'red',   to = 'green' },
+}})
