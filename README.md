@@ -252,3 +252,9 @@ local machine = require('statemachine')
 
 local fsm = machine.create({
   inital = 'green',
+  events = {
+    { name = 'panic',   from = 'green', to = 'red'   },
+    { name = 'calm',    from = 'red',   to = 'green' },
+}})
+print(fsm.current) -- "green"
+```
