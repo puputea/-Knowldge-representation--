@@ -23,3 +23,12 @@ describe("Lua state machine framework", function()
     end)
 
     it("should not let you get to the wrong state", function()
+      assert.is_false(fsm:panic())
+      assert.is_false(fsm:calm())
+      assert.is_false(fsm:clear())
+    end)
+
+    it("should let you go to yellow", function()
+      assert.is_true(fsm:warn())
+      assert.are_equal(fsm.current, 'yellow')
+    end)
