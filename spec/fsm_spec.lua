@@ -44,3 +44,17 @@ describe("Lua state machine framework", function()
       assert.is_false(fsm:cannot('warn'))
       assert.is_true(fsm:cannot('panic'))
       assert.is_true(fsm:cannot('calm'))
+      assert.is_true(fsm:cannot('clear'))
+    end)
+
+    it("should support checking states", function()
+      assert.is_true(fsm:is('green'))
+      assert.is_false(fsm:is('red'))
+      assert.is_false(fsm:is('yellow'))
+    end)
+
+    it("should fire callbacks", function()
+      local fsm = machine.create({
+        initial = 'green',
+        events = stoplight,
+        callbacks = {
