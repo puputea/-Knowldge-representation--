@@ -66,3 +66,20 @@ describe("Lua state machine framework", function()
           onyellow = stub.new(),
           onwarn = stub.new()
         }
+      })
+
+      fsm:warn()
+
+      assert.spy(fsm.onbeforewarn).was_called_with(_, 'warn', 'green', 'yellow')
+      assert.spy(fsm.onleavegreen).was_called_with(_, 'warn', 'green', 'yellow')
+
+      assert.spy(fsm.onenteryellow).was_called_with(_, 'warn', 'green', 'yellow')
+      assert.spy(fsm.onafterwarn).was_called_with(_, 'warn', 'green', 'yellow')
+      assert.spy(fsm.onstatechange).was_called_with(_, 'warn', 'green', 'yellow')
+
+      assert.spy(fsm.onyellow).was_not_called()
+      assert.spy(fsm.onwarn).was_not_called()
+    end)
+
+    it("should fire handlers", function()
+      fsm.onbeforewarn = stub.new()
