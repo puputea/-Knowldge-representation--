@@ -58,3 +58,11 @@ describe("Lua state machine framework", function()
         initial = 'green',
         events = stoplight,
         callbacks = {
+          onbeforewarn = stub.new(),
+          onleavegreen = stub.new(),
+          onenteryellow = stub.new(),
+          onafterwarn = stub.new(),
+          onstatechange = stub.new(),
+          onyellow = stub.new(),
+          onwarn = stub.new()
+        }
