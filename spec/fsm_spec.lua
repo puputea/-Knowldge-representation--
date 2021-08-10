@@ -101,3 +101,16 @@ describe("Lua state machine framework", function()
       assert.spy(fsm.onstatechange).was_called_with(_, 'warn', 'green', 'yellow')
 
       assert.spy(fsm.onyellow).was_not_called()
+      assert.spy(fsm.onwarn).was_not_called()
+    end)
+
+    it("should accept additional arguments to handlers", function()
+      fsm.onbeforewarn = stub.new()
+      fsm.onleavegreen = stub.new()
+      fsm.onenteryellow = stub.new()
+      fsm.onafterwarn = stub.new()
+      fsm.onstatechange = stub.new()
+
+      fsm:warn('bar')
+
+      assert.spy(fsm.onbeforewarn).was_called_with(_, 'warn', 'green', 'yellow', 'bar')
