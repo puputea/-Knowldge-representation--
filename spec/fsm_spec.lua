@@ -114,3 +114,19 @@ describe("Lua state machine framework", function()
       fsm:warn('bar')
 
       assert.spy(fsm.onbeforewarn).was_called_with(_, 'warn', 'green', 'yellow', 'bar')
+      assert.spy(fsm.onleavegreen).was_called_with(_, 'warn', 'green', 'yellow', 'bar')
+      
+      assert.spy(fsm.onenteryellow).was_called_with(_, 'warn', 'green', 'yellow', 'bar')
+      assert.spy(fsm.onafterwarn).was_called_with(_, 'warn', 'green', 'yellow', 'bar')
+      assert.spy(fsm.onstatechange).was_called_with(_, 'warn', 'green', 'yellow', 'bar')
+    end)
+
+    it("should fire short handlers as a fallback", function()
+      fsm.onyellow = stub.new()
+      fsm.onwarn = stub.new()
+
+      fsm:warn()
+
+      assert.spy(fsm.onyellow).was_called_with(_, 'warn', 'green', 'yellow')
+      assert.spy(fsm.onwarn).was_called_with(_, 'warn', 'green', 'yellow')
+    end)
