@@ -130,3 +130,16 @@ describe("Lua state machine framework", function()
       assert.spy(fsm.onyellow).was_called_with(_, 'warn', 'green', 'yellow')
       assert.spy(fsm.onwarn).was_called_with(_, 'warn', 'green', 'yellow')
     end)
+
+    it("should cancel the warn event from onleavegreen", function()
+      fsm.onleavegreen = function(self, name, from, to) 
+        return false
+      end
+
+      local result = fsm:warn()
+
+      assert.is_false(result)
+      assert.are_equal(fsm.current, 'green')
+    end)
+
+    it("should cancel the warn event from onbeforewarn", function()
