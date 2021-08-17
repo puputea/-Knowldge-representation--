@@ -152,3 +152,13 @@ describe("Lua state machine framework", function()
       assert.is_false(result)
       assert.are_equal(fsm.current, 'green')
     end)
+
+    it("pauses when async is passed", function()
+      fsm.onleavegreen = function(self, name, from, to)
+        return fsm.ASYNC
+      end
+      fsm.onenteryellow = function(self, name, from, to)
+        return fsm.ASYNC
+      end
+
+      local result = fsm:warn()
