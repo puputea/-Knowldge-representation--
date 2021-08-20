@@ -172,3 +172,30 @@ describe("Lua state machine framework", function()
       assert.are_equal(fsm.current, 'yellow')
       assert.are_equal(fsm.currentTransitioningEvent, 'warn')
       assert.are_equal(fsm.asyncState, 'warnWaitingOnEnter')
+
+      result = fsm:transition(fsm.currentTransitioningEvent)
+      assert.is_true(result)
+      assert.are_equal(fsm.current, 'yellow')
+      assert.is_nil(fsm.currentTransitioningEvent)
+      assert.are_equal(fsm.asyncState, fsm.NONE)
+    end)
+
+    it("should accept additional arguments to async handlers", function()
+      fsm.onbeforewarn = stub.new()
+      fsm.onleavegreen = spy.new(function(self, name, from, to, arg)
+        return fsm.ASYNC
+      end)
+      fsm.onenteryellow = spy.new(function(self, name, from, to, arg)
+        return fsm.ASYNC
+      end)
+      fsm.onafterwarn = stub.new()
+      fsm.onstatechange = stub.new()
+
+      fsm:warn('bar')
+      assert.spy(fsm.onbeforewarn).was_called_with(_, 'warn', 'green', 'yellow', 'bar')
+      assert.spy(fsm.onleavegreen).was_called_with(_, 'warn', 'green', 'yellow', 'bar')
+
+      fsm:transition(fsm.currentTransitioningEvent)
+      assert.spy(fsm.onenteryellow).was_called_with(_, 'warn', 'green', 'yellow', 'bar')
+
+      fsm:transition(fsm.currentTransitioningEvent)
