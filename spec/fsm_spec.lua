@@ -199,3 +199,22 @@ describe("Lua state machine framework", function()
       assert.spy(fsm.onenteryellow).was_called_with(_, 'warn', 'green', 'yellow', 'bar')
 
       fsm:transition(fsm.currentTransitioningEvent)
+      assert.spy(fsm.onafterwarn).was_called_with(_, 'warn', 'green', 'yellow', 'bar')
+      assert.spy(fsm.onstatechange).was_called_with(_, 'warn', 'green', 'yellow', 'bar')
+    end)
+
+    it("should properly transition when another event happens during leave async", function()
+      local tempStoplight = {}
+      for _, event in ipairs(stoplight) do
+        table.insert(tempStoplight, event)
+      end
+      table.insert(tempStoplight, { name = "panic", from = "green", to = "red" })
+      
+      local fsm = machine.create({
+        initial = 'green',
+        events = tempStoplight
+      })
+
+      fsm.onleavegreen = function(self, name, from, to)
+        return fsm.ASYNC
+      end
