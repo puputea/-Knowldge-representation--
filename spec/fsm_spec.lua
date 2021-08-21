@@ -218,3 +218,19 @@ describe("Lua state machine framework", function()
       fsm.onleavegreen = function(self, name, from, to)
         return fsm.ASYNC
       end
+
+      fsm:warn()
+
+      local result = fsm:panic()
+      local transitionResult = fsm:transition(fsm.currentTransitioningEvent)
+
+      assert.is_true(result)
+      assert.is_true(transitionResult)
+      assert.is_nil(fsm.currentTransitioningEvent)
+      assert.are_equal(fsm.asyncState, fsm.NONE)
+      assert.are_equal(fsm.current, 'red')
+    end)
+
+    it("should properly transition when another event happens during enter async", function()
+      fsm.onenteryellow = function(self, name, from, to)
+        return fsm.ASYNC
