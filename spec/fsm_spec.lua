@@ -241,3 +241,12 @@ describe("Lua state machine framework", function()
       local result = fsm:panic()
 
       assert.is_true(result)
+      assert.is_nil(fsm.currentTransitioningEvent)
+      assert.are_equal(fsm.asyncState, fsm.NONE)
+      assert.are_equal(fsm.current, 'red')
+    end)
+
+    it("should properly cancel the transition if asked", function()
+      fsm.onleavegreen = function(self, name, from, to)
+        return fsm.ASYNC
+      end
