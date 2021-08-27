@@ -234,3 +234,10 @@ describe("Lua state machine framework", function()
     it("should properly transition when another event happens during enter async", function()
       fsm.onenteryellow = function(self, name, from, to)
         return fsm.ASYNC
+      end
+
+      fsm:warn()
+
+      local result = fsm:panic()
+
+      assert.is_true(result)
