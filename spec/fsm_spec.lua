@@ -250,3 +250,15 @@ describe("Lua state machine framework", function()
       fsm.onleavegreen = function(self, name, from, to)
         return fsm.ASYNC
       end
+
+      fsm:warn()
+      fsm:cancelTransition(fsm.currentTransitioningEvent)
+
+      assert.is_nil(fsm.currentTransitioningEvent)
+      assert.are_equal(fsm.asyncState, fsm.NONE)
+      assert.are_equal(fsm.current, 'green')
+
+      fsm.onleavegreen = nil
+      fsm.onenteryellow = function(self, name, from, to)
+        return fsm.ASYNC
+      end
