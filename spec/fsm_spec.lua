@@ -281,3 +281,13 @@ describe("Lua state machine framework", function()
 
   describe("A monster", function()
     local fsm
+    local monster = {
+      { name = 'eat',  from = 'hungry',                                to = 'satisfied' },
+      { name = 'eat',  from = 'satisfied',                             to = 'full'      },
+      { name = 'eat',  from = 'full',                                  to = 'sick'      },
+      { name = 'rest', from = {'hungry', 'satisfied', 'full', 'sick'}, to = 'hungry'    }
+    }
+
+    before_each(function()
+      fsm = machine.create({ initial = 'hungry', events = monster })
+    end)
