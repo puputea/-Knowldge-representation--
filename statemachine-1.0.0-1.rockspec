@@ -1,2 +1,2 @@
 package = "statemachine"
-v
+version = "1.0
