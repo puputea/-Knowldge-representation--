@@ -5,4 +5,4 @@ source = {
   dir = "lua-state-machine-1.0.0"
 }
 description = {
-   summary = "A finite state m
+   summary = "A finite state machine m
