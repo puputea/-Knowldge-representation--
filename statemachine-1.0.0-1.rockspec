@@ -6,4 +6,5 @@ source = {
 }
 description = {
    summary = "A finite state machine micro framework",
-   detail
+   detailed = [[
+      
