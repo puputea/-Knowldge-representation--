@@ -8,4 +8,5 @@ description = {
    summary = "A finite state machine micro framework",
    detailed = [[
       This standalone module provides a finite state machine for your pleasure. 
-   
+   ]],
+   homepag
