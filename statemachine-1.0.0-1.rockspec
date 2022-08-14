@@ -9,4 +9,4 @@ description = {
    detailed = [[
       This standalone module provides a finite state machine for your pleasure. 
    ]],
-   homepage = "https:
+   homepage = "https://github.
