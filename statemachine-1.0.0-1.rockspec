@@ -9,4 +9,4 @@ description = {
    detailed = [[
       This standalone module provides a finite state machine for your pleasure. 
    ]],
-   homepage = "https://github.com/kyleconroy/lua-state-
+   homepage = "https://github.com/kyleconroy/lua-state-machine
