@@ -10,4 +10,4 @@ description = {
       This standalone module provides a finite state machine for your pleasure. 
    ]],
    homepage = "https://github.com/kyleconroy/lua-state-machine",
-   license 
+   license = "MIT/X
