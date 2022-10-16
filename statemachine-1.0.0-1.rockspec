@@ -12,4 +12,5 @@ description = {
    homepage = "https://github.com/kyleconroy/lua-state-machine",
    license = "MIT/X11"
 }
-dependencie
+dependencies = {
+   
