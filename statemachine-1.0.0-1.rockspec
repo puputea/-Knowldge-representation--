@@ -16,4 +16,5 @@ dependencies = {
    "lua >= 5.1"
 }
 build = {
-  type = "builtin
+  type = "builtin",
+  modules = {
