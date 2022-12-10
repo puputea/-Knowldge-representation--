@@ -18,4 +18,4 @@ dependencies = {
 build = {
   type = "builtin",
   modules = {
-    ["statemachine"] = "s
+    ["statemachine"] = "statemac
