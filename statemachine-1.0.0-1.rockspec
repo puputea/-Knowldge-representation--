@@ -20,4 +20,4 @@ build = {
   modules = {
     ["statemachine"] = "statemachine.lua"
   },
-  
+  copy_directo
