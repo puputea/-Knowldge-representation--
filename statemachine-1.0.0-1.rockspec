@@ -18,4 +18,6 @@ dependencies = {
 build = {
   type = "builtin",
   modules = {
-    ["statemachine"] = "statemachine
+    ["statemachine"] = "statemachine.lua"
+  },
+  
