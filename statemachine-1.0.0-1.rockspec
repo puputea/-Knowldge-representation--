@@ -21,3 +21,5 @@ build = {
     ["statemachine"] = "statemachine.lua"
   },
   copy_directories = {}
+}
+
