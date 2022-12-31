@@ -25,3 +25,17 @@ local function create_transition(name)
 
       local beforeReturn = call_handler(self["onbefore" .. name], params)
       local leaveReturn = call_handler(self["onleave" .. from], params)
+
+      if beforeReturn == false or leaveReturn == false then
+        return false
+      end
+
+      self.asyncState = name .. "WaitingOnLeave"
+
+      if leaveReturn ~= ASYNC then
+        transition(self, ...)
+      end
+      
+      return true
+    elseif self.asyncState == name .. "WaitingOnLeave" then
+      self.current = to
