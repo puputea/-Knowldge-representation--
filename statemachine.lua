@@ -73,3 +73,17 @@ end
 local function add_to_map(map, event)
   if type(event.from) == 'string' then
     map[event.from] = event.to
+  else
+    for _, from in ipairs(event.from) do
+      map[from] = event.to
+    end
+  end
+end
+
+function machine.create(options)
+  assert(options.events)
+
+  local fsm = {}
+  setmetatable(fsm, machine)
+
+  fsm.options = options
