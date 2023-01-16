@@ -54,3 +54,11 @@ local function create_transition(name)
       call_handler(self["onstatechange"], params)
       self.asyncState = NONE
       self.currentTransitioningEvent = nil
+      return true
+    else
+    	if string.find(self.asyncState, "WaitingOnLeave") or string.find(self.asyncState, "WaitingOnEnter") then
+    		self.asyncState = NONE
+    		transition(self, ...)
+    		return true
+    	end
+    end
