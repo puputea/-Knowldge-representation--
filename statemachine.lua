@@ -62,3 +62,14 @@ local function create_transition(name)
     		return true
     	end
     end
+
+    self.currentTransitioningEvent = nil
+    return false
+  end
+
+  return transition
+end
+
+local function add_to_map(map, event)
+  if type(event.from) == 'string' then
+    map[event.from] = event.to
