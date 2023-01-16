@@ -87,3 +87,24 @@ function machine.create(options)
   setmetatable(fsm, machine)
 
   fsm.options = options
+  fsm.current = options.initial or 'none'
+  fsm.asyncState = NONE
+  fsm.events = {}
+
+  for _, event in ipairs(options.events or {}) do
+    local name = event.name
+    fsm[name] = fsm[name] or create_transition(name)
+    fsm.events[name] = fsm.events[name] or { map = {} }
+    add_to_map(fsm.events[name].map, event)
+  end
+  
+  for name, callback in pairs(options.callbacks or {}) do
+    fsm[name] = callback
+  end
+
+  return fsm
+end
+
+function machine:is(state)
+  return self.current == state
+end
