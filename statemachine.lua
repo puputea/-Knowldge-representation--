@@ -114,3 +114,14 @@ function machine:can(e)
   local to = event and event.map[self.current] or event.map['*']
   return to ~= nil, to
 end
+
+function machine:cannot(e)
+  return not self:can(e)
+end
+
+function machine:todot(filename)
+  local dotfile = io.open(filename,'w')
+  dotfile:write('digraph {\n')
+  local transition = function(event,from,to)
+    dotfile:write(string.format('%s -> %s [label=%s];\n',from,to,event))
+  end
