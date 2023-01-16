@@ -46,3 +46,11 @@ local function create_transition(name)
 
       if enterReturn ~= ASYNC then
         transition(self, ...)
+      end
+      
+      return true
+    elseif self.asyncState == name .. "WaitingOnEnter" then
+      call_handler(self["onafter" .. name] or self["on" .. name], params)
+      call_handler(self["onstatechange"], params)
+      self.asyncState = NONE
+      self.currentTransitioningEvent = nil
