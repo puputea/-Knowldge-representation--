@@ -136,3 +136,16 @@ function machine:todot(filename)
   end
   dotfile:write('}\n')
   dotfile:close()
+end
+
+function machine:transition(event)
+  if self.currentTransitioningEvent == event then
+    return self[self.currentTransitioningEvent](self)
+  end
+end
+
+function machine:cancelTransition(event)
+  if self.currentTransitioningEvent == event then
+    self.asyncState = NONE
+    self.currentTransitioningEvent = nil
+  end
