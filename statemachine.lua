@@ -125,3 +125,14 @@ function machine:todot(filename)
   local transition = function(event,from,to)
     dotfile:write(string.format('%s -> %s [label=%s];\n',from,to,event))
   end
+  for _, event in pairs(self.options.events) do
+    if type(event.from) == 'table' then
+      for _, from in ipairs(event.from) do
+        transition(event.name,from,event.to)
+      end
+    else
+      transition(event.name,event.from,event.to)
+    end
+  end
+  dotfile:write('}\n')
+  dotfile:close()
