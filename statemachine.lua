@@ -149,3 +149,9 @@ function machine:cancelTransition(event)
     self.asyncState = NONE
     self.currentTransitioningEvent = nil
   end
+end
+
+machine.NONE = NONE
+machine.ASYNC = ASYNC
+
+return machine
